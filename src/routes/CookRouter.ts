@@ -102,7 +102,7 @@ import { Router } from 'express';
 router.patch('/:id', CookComponent.update);
  
  
- /**
+/**
   * GET method route 
   * @example http://localhost:PORT/v1/cooks/:id
   * 
@@ -128,10 +128,10 @@ router.patch('/:id', CookComponent.update);
   *            schema:
   *              oneOf:
   *                - $ref: '#/components/schemas/UserSchema'
-  */
+*/
  router.get('/:id', CookComponent.findOne);
  
- /**
+/**
   * DELETE method route
   * @example  http://localhost:PORT/v1/cooks/:id
   * 
@@ -157,7 +157,7 @@ router.patch('/:id', CookComponent.update);
   *            schema:
   *              oneOf:
   *                - $ref: '#/components/schemas/CookSchema'
-  */
+*/
  router.delete('/:id', CookComponent.remove);
  
  /**
