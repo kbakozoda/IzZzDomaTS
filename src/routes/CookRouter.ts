@@ -71,6 +71,36 @@ import { Router } from 'express';
   *                $ref: '#/components/schemas/Error'
   */
  router.post('/', CookComponent.create);
+
+/**
+ * GET method route 
+ * @example http://localhost:PORT/v1/cooks/:id
+ * 
+ * @swagger
+ * /v1/cooks/{id}:
+ *  get:
+ *    description: Get cook by userId
+ *    tags: ["cooks"]
+ *    security:
+ *      - ApiKeyAuth: []
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        description: the unique cookId
+ *        required: true
+ *        schema:
+ *          type: string
+ *    responses:
+ *      200:
+ *        description: return coko by id
+ *        content:
+ *          application/json:
+ *            schema:
+ *              oneOf:
+ *                - $ref: '#/components/schemas/UserSchema'
+ */
+router.patch('/:id', CookComponent.update);
+ 
  
  /**
   * GET method route 

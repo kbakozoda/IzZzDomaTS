@@ -11,7 +11,7 @@ import { Types } from 'mongoose';
 const CookService: ICookService = {
     /**
      * @returns {Promise < ICookModel[] >}
-     * @memberof UserService
+     * @memberof CookService
      */
     async findAll(): Promise < ICookModel[] > {
         try {
@@ -24,7 +24,7 @@ const CookService: ICookService = {
     /**
      * @param {string} id
      * @returns {Promise < ICookModel >}
-     * @memberof UserService
+     * @memberof CookService
      */
     async findOne(id: string): Promise < ICookModel > {
         try {
@@ -47,9 +47,9 @@ const CookService: ICookService = {
     },
 
     /**
-     * @param {ICookModel} user
+     * @param {ICookModel} cook
      * @returns {Promise < ICookModel >}
-     * @memberof UserService
+     * @memberof CookService
      */
     async insert(body: ICookModel): Promise < ICookModel > {
         try {
@@ -59,9 +59,32 @@ const CookService: ICookService = {
                 throw new Error(validate.error.message);
             }
 
-            const user: ICookModel = await CookModel.create(body);
+            const cook: ICookModel = await CookModel.create(body);
 
-            return user;
+            return cook;
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    },
+
+    /**
+     * @param {ICookModel} user
+     * @returns {Promise < ICookModel >}
+     * @memberof CookService
+     */
+    async update(body: ICookModel, id: string): Promise < ICookModel > {
+        try {
+            const validate: Joi.ValidationResult < ICookModel > = CookValidation.updateCook(body, id);
+
+            if (validate.error) {
+                throw new Error(validate.error.message);
+            }
+
+            const filter = { _id: id };
+
+            const cook: ICookModel = await CookModel.findOneAndUpdate(filter, body, { new: true });
+
+            return cook;
         } catch (error) {
             throw new Error(error.message);
         }
@@ -70,7 +93,7 @@ const CookService: ICookService = {
     /**
      * @param {string} id
      * @returns {Promise < ICookModel >}
-     * @memberof UserService
+     * @memberof CookService
      */
     async remove(id: string): Promise < ICookModel > {
         try {
@@ -84,11 +107,11 @@ const CookService: ICookService = {
                 throw new Error(validate.error.message);
             }
 
-            const user: ICookModel = await CookModel.findOneAndRemove({
+            const cook: ICookModel = await CookModel.findOneAndRemove({
                 _id: Types.ObjectId(id)
             });
 
-            return user;
+            return cook;
         } catch (error) {
             throw new Error(error.message);
         }

@@ -50,8 +50,10 @@ class CookValidation extends Validation {
      * @memberof CookValidation
      */
         updateCook(
-            params: ICookModel
+            params: ICookModel,
+            id: string
         ): Joi.ValidationResult < ICookModel > {
+            params._id = id;
             const schema: Joi.Schema = Joi.object().keys({
                 isActivated: Joi.number().less(2),
                 workStartHour: Joi.number().less(25),
@@ -65,7 +67,8 @@ class CookValidation extends Validation {
                     lon: Joi.number(),
                 }),
                 avatarUrl: Joi.string(),
-                description: Joi.string()
+                description: Joi.string(),
+                _id: this.customJoi.objectId().required()
             });
 
             return Joi.validate(params, schema);

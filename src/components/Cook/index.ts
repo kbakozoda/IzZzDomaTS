@@ -61,6 +61,25 @@ import { NextFunction, Request, Response } from 'express';
  * @param {NextFunction} next
  * @returns {Promise < void >}
  */
+ export async function update(req: Request, res: Response, next: NextFunction): Promise < void > {
+    try {
+
+        const user: ICookModel = await CookService.update(req.body, req.params.id);
+
+        res.status(201).json(user);
+    } catch (error) {
+        next(new HttpError(error.message.status, error.message));
+    }
+}
+
+
+/**
+ * @export
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Promise < void >}
+ */
  export async function remove(req: Request, res: Response, next: NextFunction): Promise < void > {
     try {
         const user: ICookModel = await CookService.remove(req.params.id);
