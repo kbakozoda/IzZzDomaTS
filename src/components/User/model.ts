@@ -10,15 +10,15 @@ import { NextFunction } from 'express';
  * @extends {Document}
  */
 export interface IUserModel extends Document {
-    phone: string;
-    password: string;
-    passwordResetToken: string;
-    passwordResetExpires: Date;
+    phone?: string;
+    password?: string;
+    passwordResetToken?: string;
+    passwordResetExpires?: Date;
 
-    tokens: AuthToken[];
+    tokens?: AuthToken[];
 
-    fullName: string;
-    role: string;
+    fullName?: string;
+    role?: string;
 
     comparePassword: (password: string) => Promise < boolean > ;
     gravatar: (size: number) => string;

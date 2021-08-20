@@ -3,7 +3,7 @@
         "outDir": "./build/",
         "module": "commonjs",
         "noImplicitAny": true,
-        "target": "es6",
+        "target": "es2017",
         "sourceMap": true,
         "plugins": [
             {

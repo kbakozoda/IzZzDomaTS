@@ -68,6 +68,29 @@ const UserService: IUserService = {
     },
 
     /**
+     * @param {IUserModel} user
+     * @returns {Promise < IUserModel >}
+     * @memberof UserService
+     */
+    async update(body: IUserModel, id: string): Promise < IUserModel > {
+        try {
+            const validate: Joi.ValidationResult < IUserModel > = UserValidation.updateUser(body, id);
+
+            if (validate.error) {
+                throw new Error(validate.error.message);
+            }
+
+            const filter = { _id: id };
+
+            const cook: IUserModel = await UserModel.findOneAndUpdate(filter, body, { new: true });
+
+            return cook;
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    },
+
+    /**
      * @param {string} id
      * @returns {Promise < IUserModel >}
      * @memberof UserService

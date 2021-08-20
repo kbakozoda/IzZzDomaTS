@@ -3,6 +3,8 @@ import CookModel, {ICookModel} from './model';
 import CookValidation from './validation';
 import { ICookService } from './interface';
 import { Types } from 'mongoose';
+import { IUserModel, UserRoles } from '../User/model';
+import UserService from '../User/service';
 
 /**
  * @export
@@ -60,6 +62,7 @@ const CookService: ICookService = {
             }
 
             const cook: ICookModel = await CookModel.create(body);
+            await UserService.update({ role: UserRoles.Cook } as IUserModel, body.userId);
 
             return cook;
         } catch (error) {

@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
 import Validation from '../validation';
-import { IUserModel } from './model';
+import { IUserModel, UserRoles } from './model';
 
 /**
  * @export
@@ -29,6 +29,28 @@ class UserValidation extends Validation {
             fullName: Joi.string().required(),
             phone: Joi.string().required(),
             password: Joi.string().required()
+        });
+
+        return Joi.validate(params, schema);
+    }
+
+    /**
+     * @param {IUserModel} params
+     * @returns {Joi.ValidationResult<IUserModel >}
+     * @memberof UserValidation
+     */
+    updateUser(
+        params: IUserModel,
+        id: string
+    ): Joi.ValidationResult < IUserModel > {
+
+        params._id = id;
+
+        const schema: Joi.Schema = Joi.object().keys({
+            fullName: Joi.string(),
+            password: Joi.string(),
+            role: Joi.valid(Object.values(UserRoles)),
+            _id: this.customJoi.objectId().required()
         });
 
         return Joi.validate(params, schema);
