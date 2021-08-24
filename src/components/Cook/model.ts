@@ -3,7 +3,7 @@ import { Document, Schema } from 'mongoose';
 
 /**
  * @export
- * @interface IUserModel
+ * @interface ICookModel
  * @extends {Document}
  */
 export interface ICookModel extends Document {

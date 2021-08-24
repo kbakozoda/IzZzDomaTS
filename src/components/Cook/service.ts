@@ -77,6 +77,7 @@ const CookService: ICookService = {
      */
     async update(body: ICookModel, id: string): Promise < ICookModel > {
         try {
+            // TODO: Must return 404 in case the cook with this id does not exist; same in other similar requests
             const validate: Joi.ValidationResult < ICookModel > = CookValidation.updateCook(body, id);
 
             if (validate.error) {
