@@ -16,6 +16,7 @@ export interface IDishModel extends Document {
     compound: string;
     allergens: Array<string>;
     coverPhotoUrl: string;
+    categories: Array<string>;
 }
 
 /**
@@ -50,6 +51,8 @@ export interface IDishModel extends Document {
  *          type: array
  *        coverPhotoUrl:
  *          type: string
+ *        categories:
+ *          type: string
  *
  *    Dishes:
  *      type: array
@@ -67,7 +70,8 @@ const DishSchema: Schema = new Schema({
     description: String,
     compound: String,
     allergens: Array,
-    coverPhotoUrl: String
+    coverPhotoUrl: String,
+    categories: Array
 }, {
     timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 });
