@@ -57,6 +57,7 @@ export interface ICookModel extends Document {
  *        $ref: '#/components/schemas/UserSchema'
  */
 
+// TODO: required fields?
 const CookSchema: Schema = new Schema({
     isActivated: Boolean,
     workStartHour: Number,

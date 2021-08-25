@@ -2,7 +2,7 @@ import { ICookModel } from './model';
 
 /**
  * @export
- * @interface IUserService
+ * @interface ICookService
  */
 export interface ICookService {
 
@@ -32,7 +32,6 @@ export interface ICookService {
      * @memberof ICookService
      */
     update(IUserModel: ICookModel, id: string): Promise<ICookModel>;
-
 
     /**
      * @param {string} id

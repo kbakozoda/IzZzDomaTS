@@ -26,7 +26,7 @@ class CookValidation extends Validation {
         params: ICookModel
     ): Joi.ValidationResult < ICookModel > {
         const schema: Joi.Schema = Joi.object().keys({
-            isActivated: Joi.number().less(2),
+            isActivated: Joi.boolean(),
             workStartHour: Joi.number().less(25).required(),
             workEndHour: Joi.number().less(25).required(),
             workStartDay: Joi.number().less(8).required(),
@@ -55,7 +55,7 @@ class CookValidation extends Validation {
         ): Joi.ValidationResult < ICookModel > {
             params._id = id;
             const schema: Joi.Schema = Joi.object().keys({
-                isActivated: Joi.number().less(2),
+                isActivated: Joi.boolean(),
                 workStartHour: Joi.number().less(25),
                 workEndHour: Joi.number().less(25),
                 workStartDay: Joi.number().less(8),
