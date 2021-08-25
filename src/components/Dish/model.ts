@@ -52,7 +52,7 @@ export interface IDishModel extends Document {
  *        coverPhotoUrl:
  *          type: string
  *        categories:
- *          type: string
+ *          type: array
  *
  *    Dishes:
  *      type: array
@@ -62,16 +62,15 @@ export interface IDishModel extends Document {
 
 const DishSchema: Schema = new Schema({
     isActive: Boolean,
-    price: Number, // currently this price indicates the price for only one portion. But we need to consider the discounts and packs.[Like in Savol & Amazon]
-    prictureUrls: Array,
-    hoursToPrepare: Number,
-    workEndDay: Number,
-    cookId: String,
-    description: String,
-    compound: String,
+    price: { type: Number, required: true }, // currently this price indicates the price for only one portion. But we need to consider the discounts and packs.[Like in Savol & Amazon]
+    pictureUrls: Array,
+    hoursToPrepare: { type: Number, required: true },
+    cookId: { type: String, required: true },
+    description: { type: String, required: true },
+    compound: { type: String, required: true },
     allergens: Array,
-    coverPhotoUrl: String,
-    categories: Array
+    coverPhotoUrl: { type: String },
+    categories: { type: Array, required: true }
 }, {
     timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 });
