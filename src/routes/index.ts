@@ -5,6 +5,7 @@ import * as swaggerUi from 'swagger-ui-express';
 import AuthRouter from './AuthRouter';
 import UserRouter from './UserRouter';
 import CookRouter from './CookRouter';
+import DishRouter from './DishRouter';
 let swaggerDoc: Object;
 
 try {
@@ -46,6 +47,12 @@ export function init(app: express.Application): void {
      * @constructs
      */
     app.use('/auth', AuthRouter);
+
+    /**
+     * @description Forwards any requests to the /dishes URI to our DishRouter
+     * @constructs
+     */
+    app.use('/v1/dishes', DishRouter);
 
     /**
      * @description

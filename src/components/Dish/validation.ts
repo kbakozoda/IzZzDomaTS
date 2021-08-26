@@ -35,7 +35,8 @@ class DishValidation extends Validation {
             categories: Joi.array().items(Joi.string()).required(),
             coverPhotoUrl: Joi.string(),
             description: Joi.string().required(),
-            compound: Joi.string().required()
+            compound: Joi.string().required(),
+            title: Joi.string().required()
         });
 
         return Joi.validate(params, schema);
@@ -56,13 +57,13 @@ class DishValidation extends Validation {
                 price: Joi.number(),
                 pictureUrls: Joi.array().items(Joi.string()),
                 hoursToPrepare: Joi.number(),
-                cookId: this.customJoi.objectId(),
                 allergens: Joi.array().items(Joi.string()),
                 categories: Joi.array().items(Joi.string()),
                 coverPhotoUrl: Joi.string(),
                 description: Joi.string(),
                 compound: Joi.string(),
-                _id: this.customJoi.objectId()
+                _id: this.customJoi.objectId(),
+                title: Joi.string()
             });
 
             return Joi.validate(params, schema);

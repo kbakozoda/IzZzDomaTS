@@ -17,6 +17,7 @@ export interface IDishModel extends Document {
     allergens: Array<string>;
     coverPhotoUrl: string;
     categories: Array<string>;
+    title: string;
 }
 
 /**
@@ -53,6 +54,8 @@ export interface IDishModel extends Document {
  *          type: string
  *        categories:
  *          type: array
+ *        title:
+ *          type: string
  *
  *    Dishes:
  *      type: array
@@ -61,7 +64,7 @@ export interface IDishModel extends Document {
  */
 
 const DishSchema: Schema = new Schema({
-    isActive: Boolean,
+    isActive: { type: Boolean, default: true },
     price: { type: Number, required: true }, // currently this price indicates the price for only one portion. But we need to consider the discounts and packs.[Like in Savol & Amazon]
     pictureUrls: Array,
     hoursToPrepare: { type: Number, required: true },
@@ -69,8 +72,9 @@ const DishSchema: Schema = new Schema({
     description: { type: String, required: true },
     compound: { type: String, required: true },
     allergens: Array,
-    coverPhotoUrl: { type: String },
-    categories: { type: Array, required: true }
+    coverPhotoUrl: { type: String, default: "https://google.com" },
+    categories: { type: Array, required: true },
+    title: { type: String, required: true }
 }, {
     timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 });
